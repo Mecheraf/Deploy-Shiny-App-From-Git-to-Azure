@@ -1,3 +1,5 @@
+$GitHubID = "MyGitHUbID"
+$GitHubToken = "Mytoken"
 #$AZusername = "YourAzureAccount"
 #$AZpassword = "YouSecuredAzurePassword"
 
@@ -19,6 +21,11 @@ $acrpass = az acr credential show -n $acrName --query passwords[0].value
 
 #We create the AppService plan. 
 az appservice plan create -g $RGName -n $AppServiceName --sku FREE --is-linux 
+
+################################## Docker Part ##################################
+#Git clone the project
+git clone "https://$GitHubID:$GitHubToken@github.com/PathTo/shinyR.git" ".\project\"
+
 
 #Login to docker.
 docker login "$acrName.azurecr.io" -u $acrName --password $acrpass
